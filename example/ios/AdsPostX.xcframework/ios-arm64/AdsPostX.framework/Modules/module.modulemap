@@ -1,0 +1,11 @@
+framework module AdsPostX {
+  umbrella header "AdsPostX.h"
+
+  export *
+  module * { export * }
+}
+
+module AdsPostX.Swift {
+  header "AdsPostX-Swift.h"
+  requires objc
+}
