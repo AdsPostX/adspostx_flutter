@@ -1,6 +1,6 @@
 # adspostx_flutter
 
-AdsPostX offers a flutter plugin designed to help you integrate AdsPostX into your flutter mobile application within minutes and start generating more revenue and increasing sales.
+AdsPostX offers a Flutter plugin designed to help you integrate AdsPostX into your Flutter mobile application within minutes and start generating more revenue and increasing sales.
 
 ## Integration Guide
 
