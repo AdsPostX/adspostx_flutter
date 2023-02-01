@@ -35,8 +35,8 @@ abstract class AdspostxFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('setTimeout() has not been implemented.');
   }
 
-  Future<bool> initSDK(String accountId) async {
-    throw UnimplementedError('initSDK() has not been implemented.');
+  Future<bool> init(String accountId) async {
+    throw UnimplementedError('init() has not been implemented.');
   }
 
   Future<bool> loadOffers(Map attributes) async {

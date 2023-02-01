@@ -52,10 +52,10 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   }
 
   @override
-  Future<bool> initSDK(String accountId) async {
+  Future<bool> init(String accountId) async {
     try {
       final statusMessage = await methodChannel.invokeMethod(
-        "initSDK",
+        "init",
         {"accountId": accountId},
       );
       return statusMessage;

@@ -54,12 +54,12 @@ class _AdsPostXDemoState extends State<AdsPostXDemo> {
     }
   }
 
-  Future<void> initSDK(String accountId, BuildContext context) async {
+  Future<void> init(String accountId, BuildContext context) async {
     bool status = false;
     var utility = Utils(context);
     utility.startLoading();
     try {
-      status = await _adspostxPlugin.initSDK(accountId);
+      status = await _adspostxPlugin.init(accountId);
       utility.stopLoading();
       utility.showAlert("init status: $status");
     } on PlatformException catch (error) {
@@ -115,7 +115,7 @@ class _AdsPostXDemoState extends State<AdsPostXDemo> {
             ),
             ElevatedButton(
                 onPressed: () =>
-                    {initSDK(accountIdInputCtrl.text.toString(), context)},
+                    {init(accountIdInputCtrl.text.toString(), context)},
                 child: const Text("Init SDK")),
             ElevatedButton(
                 onPressed: () => {loadOffers({}, context)},

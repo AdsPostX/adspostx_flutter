@@ -27,7 +27,7 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
-    } else if(call.method == "initSDK") {
+    } else if(call.method == "init") {
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
       val accountId: String = (data["accountId"] as String?) ?: ""
 

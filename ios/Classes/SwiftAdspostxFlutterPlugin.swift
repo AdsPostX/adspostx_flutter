@@ -11,7 +11,7 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
 
   public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
     
-            if(call.method == "initSDK") {
+            if(call.method == "init") {
             if let data = call.arguments as? Dictionary<String, Any> {
                 let accountId: String = data["accountId"] as? String ?? ""
                 AdsPostx.initWith(accountId: accountId) { _result in

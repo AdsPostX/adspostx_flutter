@@ -13,8 +13,8 @@ class AdspostxFlutter {
     return AdspostxFlutterPlatform.instance.setTimeout(seconds);
   }
 
-  Future<bool> initSDK(String accountId) {
-    return AdspostxFlutterPlatform.instance.initSDK(accountId);
+  Future<bool> init(String accountId) {
+    return AdspostxFlutterPlatform.instance.init(accountId);
   }
 
   Future<bool> loadOffers(Map attributes) {
