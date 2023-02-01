@@ -1,3 +1,3 @@
 ## 0.0.1
 
-* TODO: Describe initial release.
+- initial release of adspostx_flutter plguin. Load & preview offers in flutter ios & android apps.
