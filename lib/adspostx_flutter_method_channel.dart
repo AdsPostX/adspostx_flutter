@@ -81,13 +81,13 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
 
   @override
   Future<String> showOffers(
-      int presentationStyle,
-      bool isTransparent,
-      int topMargin,
-      int rightMargin,
-      int bottomMargin,
-      int leftMargin,
-      ) async {
+    int presentationStyle,
+    bool isTransparent,
+    int topMargin,
+    int rightMargin,
+    int bottomMargin,
+    int leftMargin,
+  ) async {
     try {
       final statusMessage = await methodChannel.invokeMethod("showOffers", {
         "presentationStyle": presentationStyle,
@@ -103,5 +103,4 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
       rethrow;
     }
   }
-
 }

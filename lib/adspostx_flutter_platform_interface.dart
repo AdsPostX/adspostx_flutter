@@ -44,14 +44,13 @@ abstract class AdspostxFlutterPlatform extends PlatformInterface {
   }
 
   Future<String> showOffers(
-      int presentationStyle,
-      bool isTransparent,
-      int topMargin,
-      int rightMargin,
-      int bottomMargin,
-      int leftMargin,
-      ) async {
+    int presentationStyle,
+    bool isTransparent,
+    int topMargin,
+    int rightMargin,
+    int bottomMargin,
+    int leftMargin,
+  ) async {
     throw UnimplementedError('showOffers() has not been implemented.');
   }
-
 }

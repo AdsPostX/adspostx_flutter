@@ -1,4 +1,3 @@
-
 import 'adspostx_flutter_platform_interface.dart';
 
 class AdspostxFlutter {
@@ -33,5 +32,4 @@ class AdspostxFlutter {
       leftMargin,
     );
   }
-
 }
