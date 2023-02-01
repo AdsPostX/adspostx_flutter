@@ -1,27 +1,27 @@
 import 'adspostx_flutter_platform_interface.dart';
 
 class AdspostxFlutter {
-  Future<String> setEnvironment(int environment) {
+  Future<bool> setEnvironment(int environment) {
     return AdspostxFlutterPlatform.instance.setEnvironment(environment);
   }
 
-  Future<String> enableDebugLog(bool isEnabled) {
+  Future<bool> enableDebugLog(bool isEnabled) {
     return AdspostxFlutterPlatform.instance.enableDebugLog(isEnabled);
   }
 
-  Future<String> setTimeout(double seconds) {
+  Future<bool> setTimeout(double seconds) {
     return AdspostxFlutterPlatform.instance.setTimeout(seconds);
   }
 
-  Future<String> initSDK(String accountId) {
+  Future<bool> initSDK(String accountId) {
     return AdspostxFlutterPlatform.instance.initSDK(accountId);
   }
 
-  Future<String> loadOffers(Map attributes) {
+  Future<bool> loadOffers(Map attributes) {
     return AdspostxFlutterPlatform.instance.loadOffers(attributes);
   }
 
-  Future<String> showOffers(int presentationStyle, bool isTransparent,
+  Future<bool> showOffers(int presentationStyle, bool isTransparent,
       int topMargin, int rightMargin, int bottomMargin, int leftMargin) {
     return AdspostxFlutterPlatform.instance.showOffers(
       presentationStyle,

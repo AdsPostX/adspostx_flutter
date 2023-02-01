@@ -12,7 +12,7 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   final methodChannel = const MethodChannel('adspostx_flutter');
 
   @override
-  Future<String> enableDebugLog(bool isEnabled) async {
+  Future<bool> enableDebugLog(bool isEnabled) async {
     try {
       final statusMessage = await methodChannel
           .invokeMethod("setDebugLog", {"debugLog": isEnabled});
@@ -24,7 +24,7 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   }
 
   @override
-  Future<String> setEnvironment(int environment) async {
+  Future<bool> setEnvironment(int environment) async {
     try {
       final statusMessage = await methodChannel.invokeMethod(
         "setEnvironment",
@@ -38,7 +38,7 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   }
 
   @override
-  Future<String> setTimeout(double seconds) async {
+  Future<bool> setTimeout(double seconds) async {
     try {
       final statusMessage = await methodChannel.invokeMethod(
         "setTimeOut",
@@ -52,7 +52,7 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   }
 
   @override
-  Future<String> initSDK(String accountId) async {
+  Future<bool> initSDK(String accountId) async {
     try {
       final statusMessage = await methodChannel.invokeMethod(
         "initSDK",
@@ -66,7 +66,7 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   }
 
   @override
-  Future<String> loadOffers(Map attributes) async {
+  Future<bool> loadOffers(Map attributes) async {
     try {
       final statusMessage = await methodChannel.invokeMethod(
         "loadOffers",
@@ -80,7 +80,7 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   }
 
   @override
-  Future<String> showOffers(
+  Future<bool> showOffers(
     int presentationStyle,
     bool isTransparent,
     int topMargin,

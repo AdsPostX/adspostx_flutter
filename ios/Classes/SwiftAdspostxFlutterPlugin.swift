@@ -17,7 +17,7 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
                 AdsPostx.initWith(accountId: accountId) { _result in
                     switch _result {
                     case .success():
-                        result("success")
+                        result(true)
                     case .failure(let error):
                         if let err = error as? AdsPostxError {
                             result(FlutterError(code: "ERROR",
@@ -34,7 +34,7 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
                     AdsPostx.load(attributes: attributes) { _result in
                         switch _result {
                         case .success():
-                            result("success")
+                            result(true)
                         case .failure(let error):
                             if let err = error as? AdsPostxError {
                                 result(FlutterError(code: "ERROR",
@@ -64,7 +64,7 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
                 print("leftMargin : ",leftMargin)
                 print("style : ",style)
                 AdsPostx.showOffers(presentationStyle: style,transparent: isTransparent, margins: (top: UInt(topMargin), bottom: UInt(bottomMargin), left: UInt(leftMargin), right: UInt(rightMargin))) {
-                    result("success")
+                    result(true)
                 } onError: { error in
                     if let err = error as? AdsPostxError {
                         result(FlutterError(code: "ERROR",
@@ -83,19 +83,19 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
                 let env: Int = data["environment"] as? Int ?? 0
                 print("env: ", env)
                 AdsPostx.SetEnvironment(env == 0 ? .live : .test)
-                result("success")
+                result(true)
             }
         } else if(call.method == "setDebugLog") {
             if let data = call.arguments as? Dictionary<String, Any> {
                 let isDebugEnabled: Bool = data["debugLog"] as? Bool ?? false
                 AdsPostx.EnableDebugLog(isDebugEnabled)
-                result("success")
+                result(true)
             }
         } else if(call.method == "setTimeOut") {
             if let data = call.arguments as? Dictionary<String, Any> {
                 let timeOut: Double = data["timeout"] as? Double ?? 10.0
                 AdsPostx.setTimeOut(seconds: timeOut)
-                result("success")
+                result(true)
             }
         }
         else {

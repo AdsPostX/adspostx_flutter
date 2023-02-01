@@ -33,7 +33,7 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
 
       AdsPostX.init(accountId) { status, error ->
         if (status) {
-          result.success("success")
+          result.success(true)
         } else {
           if (error != null) {
             result.error("ERROR",error.message,null)
@@ -49,7 +49,7 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
 
           AdsPostX.load(context, it) { status, error ->
                   if (status) {
-                      result.success("success")
+                      result.success(true)
                   } else {
                       if (error != null) {
                           result.error("ERROR", error.message, null)
@@ -76,7 +76,7 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
             margin = Margin(topMargin.toUInt(),bottomMargin.toUInt(),leftMargin.toUInt(),rightMargin.toUInt()),
             onShow = {
                 println("On show")
-                result.success("success")
+                result.success(true)
             },
             onError = { it ->
                 result.error("ERROR",it.message,null)
@@ -90,23 +90,23 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
 
         if(environment == 0) {
             AdsPostX.setEnvironment(AdsPostxEnvironment.LIVE)
-            result.success("success")
+            result.success(true)
         } else {
             AdsPostX.setEnvironment(AdsPostxEnvironment.TEST)
-            result.success("success")
+            result.success(true)
         }
     } else if(call.method == "setDebugLog") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
         val isdebugLogEnabled: Boolean = (data["debugLog"] as Boolean?) ?: false
 
         AdsPostX.setDebugLog(isdebugLogEnabled)
-        result.success("success")
+        result.success(true)
     }else if(call.method == "setTimeOut") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
         val timeOut: Double = (data["timeout"] as Double?) ?: 10.0
 
         AdsPostX.setTimeOut(timeOut)
-        result.success("success")
+        result.success(true)
     }
     else {
       result.notImplemented()

@@ -23,27 +23,27 @@ abstract class AdspostxFlutterPlatform extends PlatformInterface {
     _instance = instance;
   }
 
-  Future<String> enableDebugLog(bool isEnabled) async {
+  Future<bool> enableDebugLog(bool isEnabled) async {
     throw UnimplementedError('enableDebugLog() has not been implemented.');
   }
 
-  Future<String> setEnvironment(int environment) async {
+  Future<bool> setEnvironment(int environment) async {
     throw UnimplementedError('setEnvironment() has not been implemented.');
   }
 
-  Future<String> setTimeout(double seconds) async {
+  Future<bool> setTimeout(double seconds) async {
     throw UnimplementedError('setTimeout() has not been implemented.');
   }
 
-  Future<String> initSDK(String accountId) async {
+  Future<bool> initSDK(String accountId) async {
     throw UnimplementedError('initSDK() has not been implemented.');
   }
 
-  Future<String> loadOffers(Map attributes) async {
+  Future<bool> loadOffers(Map attributes) async {
     throw UnimplementedError('loadOffers() has not been implemented.');
   }
 
-  Future<String> showOffers(
+  Future<bool> showOffers(
     int presentationStyle,
     bool isTransparent,
     int topMargin,

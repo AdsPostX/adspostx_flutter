@@ -24,43 +24,44 @@ class _AdsPostXDemoState extends State<AdsPostXDemo> {
   }
 
   Future<void> setEnvironment(int environment) async {
-    String statusMessage = "";
+    bool status = false;
     try {
-      statusMessage = await _adspostxPlugin.setEnvironment(environment);
-      log("setEnvironment status: $statusMessage");
+      status = await _adspostxPlugin.setEnvironment(environment);
+      log("setEnvironment status: $status");
     } on PlatformException catch (error) {
       log(error.message as String);
     }
   }
 
   Future<void> enableDebugLog(bool shouldEnable) async {
-    String statusMessage = "";
+    bool status = false;
     try {
-      statusMessage = await _adspostxPlugin.enableDebugLog(shouldEnable);
-      log("enableDebugLog status: $statusMessage");
+      status = await _adspostxPlugin.enableDebugLog(shouldEnable);
+      log("enableDebugLog status: $status");
     } on PlatformException catch (error) {
       log(error.message as String);
     }
   }
 
   Future<void> setTimeOut(double seconds) async {
-    String statusMessage = "";
+    bool status = false;
+
     try {
-      statusMessage = await _adspostxPlugin.setTimeout(seconds);
-      log("setTimeOut status: $statusMessage");
+      status = await _adspostxPlugin.setTimeout(seconds);
+      log("setTimeOut status: $status");
     } on PlatformException catch (error) {
       log(error.message as String);
     }
   }
 
   Future<void> initSDK(String accountId, BuildContext context) async {
-    String statusMessage = "";
+    bool status = false;
     var utility = Utils(context);
     utility.startLoading();
     try {
-      statusMessage = await _adspostxPlugin.initSDK(accountId);
+      status = await _adspostxPlugin.initSDK(accountId);
       utility.stopLoading();
-      utility.showAlert(statusMessage);
+      utility.showAlert("init status: $status");
     } on PlatformException catch (error) {
       utility.stopLoading();
       utility.showAlert(error.message as String);
@@ -68,13 +69,13 @@ class _AdsPostXDemoState extends State<AdsPostXDemo> {
   }
 
   Future<void> loadOffers(Map attributes, BuildContext context) async {
-    String statusMessage = "";
+    bool status = false;
     var utility = Utils(context);
     utility.startLoading();
     try {
-      statusMessage = await _adspostxPlugin.loadOffers(attributes);
+      status = await _adspostxPlugin.loadOffers(attributes);
       utility.stopLoading();
-      utility.showAlert("loadOffers status: $statusMessage");
+      utility.showAlert("loadOffers status: $status");
     } on PlatformException catch (error) {
       Utils(context).stopLoading();
       utility.showAlert(error.message as String);
@@ -83,13 +84,13 @@ class _AdsPostXDemoState extends State<AdsPostXDemo> {
 
   Future<void> showOffers(int presentationStyle, bool isTransparent,
       int topMargin, int rightMargin, int bottomMargin, int leftMargin) async {
-    String statusMessage = "";
+    bool status = false;
     var utility = Utils(context);
     try {
-      statusMessage = await _adspostxPlugin.showOffers(presentationStyle,
+      status = await _adspostxPlugin.showOffers(presentationStyle,
           isTransparent, topMargin, rightMargin, bottomMargin, leftMargin);
       // _showAlert(context, "show offers status: $statusMessage");
-      log("show offers status: $statusMessage");
+      log("show offers status: $status");
     } on PlatformException catch (error) {
       utility.showAlert(error.message as String);
     }
