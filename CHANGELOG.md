@@ -13,3 +13,7 @@
 ## 0.0.4
 
 - updated documentations.
+
+## 0.0.4
+
+- added callback after Offer dismiss.
