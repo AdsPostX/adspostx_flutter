@@ -57,15 +57,21 @@ class AdspostxFlutter {
   /// leftMargin must be of int type and value from 0 to 15. it indicates left margin offset in percentage.
   /// Returns a bool indicating that if showOffers call is successful or not.
   /// In case of error it can also throw exceptions.
-  Future<bool> showOffers(int presentationStyle, bool isTransparent,
-      int topMargin, int rightMargin, int bottomMargin, int leftMargin) {
+  Future<bool> showOffers(
+      int presentationStyle,
+      bool isTransparent,
+      int topMargin,
+      int rightMargin,
+      int bottomMargin,
+      int leftMargin,
+      Function(bool) callback) {
     return AdspostxFlutterPlatform.instance.showOffers(
-      presentationStyle,
-      isTransparent,
-      topMargin,
-      rightMargin,
-      bottomMargin,
-      leftMargin,
-    );
+        presentationStyle,
+        isTransparent,
+        topMargin,
+        rightMargin,
+        bottomMargin,
+        leftMargin,
+        callback);
   }
 }

@@ -117,13 +117,13 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
   /// In case of error it can also throw exceptions.
   @override
   Future<bool> showOffers(
-    int presentationStyle,
-    bool isTransparent,
-    int topMargin,
-    int rightMargin,
-    int bottomMargin,
-    int leftMargin,
-  ) async {
+      int presentationStyle,
+      bool isTransparent,
+      int topMargin,
+      int rightMargin,
+      int bottomMargin,
+      int leftMargin,
+      Function(bool) callback) async {
     try {
       final statusMessage = await methodChannel.invokeMethod("showOffers", {
         "presentationStyle": presentationStyle,
@@ -133,6 +133,14 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
         "bottomMargin": bottomMargin,
         "leftMargin": leftMargin
       });
+
+      methodChannel.setMethodCallHandler((call) async {
+        if (call.method == 'onDismiss') {
+          // Handle method call
+          callback(true);
+        }
+      });
+
       return statusMessage;
     } on PlatformException catch (error) {
       log(error.message as String);

@@ -87,8 +87,15 @@ class _AdsPostXDemoState extends State<AdsPostXDemo> {
     bool status = false;
     var utility = Utils(context);
     try {
-      status = await _adspostxPlugin.showOffers(presentationStyle,
-          isTransparent, topMargin, rightMargin, bottomMargin, leftMargin);
+      status = await _adspostxPlugin.showOffers(
+          presentationStyle,
+          isTransparent,
+          topMargin,
+          rightMargin,
+          bottomMargin,
+          leftMargin, (dismissStatus) {
+        log("Offer dismiss status is: $dismissStatus");
+      });
       // _showAlert(context, "show offers status: $statusMessage");
       log("show offers status: $status");
     } on PlatformException catch (error) {

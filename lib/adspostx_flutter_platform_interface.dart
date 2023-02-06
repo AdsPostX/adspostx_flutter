@@ -80,13 +80,13 @@ abstract class AdspostxFlutterPlatform extends PlatformInterface {
   /// Returns a bool indicating that if showOffers call is successful or not.
   /// In case of error it can also throw exceptions.
   Future<bool> showOffers(
-    int presentationStyle,
-    bool isTransparent,
-    int topMargin,
-    int rightMargin,
-    int bottomMargin,
-    int leftMargin,
-  ) async {
+      int presentationStyle,
+      bool isTransparent,
+      int topMargin,
+      int rightMargin,
+      int bottomMargin,
+      int leftMargin,
+      Function(bool) callback) async {
     throw UnimplementedError('showOffers() has not been implemented.');
   }
 }

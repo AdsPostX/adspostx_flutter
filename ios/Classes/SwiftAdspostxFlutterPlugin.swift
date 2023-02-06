@@ -3,14 +3,14 @@ import UIKit
 import AdsPostX
 
 public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
+     static var channel: FlutterMethodChannel!
   public static func register(with registrar: FlutterPluginRegistrar) {
-    let channel = FlutterMethodChannel(name: "adspostx_flutter", binaryMessenger: registrar.messenger())
+    channel = FlutterMethodChannel(name: "adspostx_flutter", binaryMessenger: registrar.messenger())
     let instance = SwiftAdspostxFlutterPlugin()
     registrar.addMethodCallDelegate(instance, channel: channel)
   }
 
-  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {
-    
+  public func handle(_ call: FlutterMethodCall, result: @escaping FlutterResult) {    
             if(call.method == "init") {
             if let data = call.arguments as? Dictionary<String, Any> {
                 let accountId: String = data["accountId"] as? String ?? ""
@@ -71,8 +71,16 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
                                             message: err.description,
                                             details: nil))
                     }
-                } onDismiss: {
-                    
+                } onDismiss: {                    
+                    Self.channel.invokeMethod("onDismiss", arguments: true) { (result: Any?) in
+                        if let error = result as? FlutterError {
+                            // Handle error
+                        } else if result == nil {
+                            // Handle not implemented
+                        } else {
+                            // Handle success
+                        }
+                    }
                 }
                 
             }

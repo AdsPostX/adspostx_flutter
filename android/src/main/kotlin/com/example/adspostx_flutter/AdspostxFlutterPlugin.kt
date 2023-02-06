@@ -75,14 +75,17 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
             isTransparent,
             margin = Margin(topMargin.toUInt(),bottomMargin.toUInt(),leftMargin.toUInt(),rightMargin.toUInt()),
             onShow = {
-                println("On show")
+                println("Android: On show")
                 result.success(true)
             },
             onError = { it ->
                 result.error("ERROR",it.message,null)
             },
             onDismiss = {
-                println("Dismiss")
+                println("Android: Dismiss")
+                channel.invokeMethod(
+                  "onDismiss",
+                  true)
             })
     }else if(call.method == "setEnvironment") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
