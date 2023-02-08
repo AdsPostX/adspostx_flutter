@@ -45,13 +45,19 @@ Future<void> loadOffers(Map attributes, BuildContext context) async {
 Future<void> showOffers(int presentationStyle, bool isTransparent,
       int topMargin, int rightMargin, int bottomMargin, int leftMargin) async {
     bool status = false;
-    try {
-      status = await _adspostxPlugin.showOffers(presentationStyle,
-          isTransparent, topMargin, rightMargin, bottomMargin, leftMargin);
-      // _showAlert(context, "show offers status: $statusMessage");
+     try {
+      status = await _adspostxPlugin.showOffers(
+          presentationStyle,
+          isTransparent,
+          topMargin,
+          rightMargin,
+          bottomMargin,
+          leftMargin, (dismissStatus) {
+        log("Offer dismiss status is: $dismissStatus");
+      });
       log("show offers status: $status");
     } on PlatformException catch (error) {
-      log(error.message as String);
+//      utility.showAlert(error.message as String);
     }
   }
 ```
