@@ -1,5 +1,5 @@
 // swift-interface-format-version: 1.0
-// swift-compiler-version: Apple Swift version 5.7 (swiftlang-5.7.0.127.4 clang-1400.0.29.50)
+// swift-compiler-version: Apple Swift version 5.7.2 (swiftlang-5.7.2.135.5 clang-1400.0.29.51)
 // swift-module-flags: -target x86_64-apple-ios13.0-simulator -enable-objc-interop -enable-library-evolution -swift-version 5 -enforce-exclusivity=checked -O -module-name AdsPostX
 // swift-module-flags-ignorable: -enable-bare-slash-regex
 @_exported import AdsPostX
@@ -60,7 +60,7 @@ extension AdsPostX.AdsPostxError : Swift.CustomStringConvertible {
     get
   }
 }
-@_hasMissingDesignatedInitializers final public class AdsPostx {
+@_inheritsConvenienceInitializers @_hasMissingDesignatedInitializers @objc final public class AdsPostx : ObjectiveC.NSObject {
   public static func getAttributes() -> Swift.Dictionary<Swift.String, Any?>?
   public typealias Void = ()
   public static func initWith(accountId: Swift.String, completion: @escaping (Swift.Result<AdsPostX.AdsPostx.Void, Swift.Error>) -> AdsPostX.AdsPostx.Void)
@@ -70,7 +70,7 @@ extension AdsPostX.AdsPostxError : Swift.CustomStringConvertible {
   public static func getEnvironment() -> Swift.String
   public static func setTimeOut(seconds: Swift.Double)
   public static func showOffers(presentationStyle: AdsPostX.OfferPresentationStyle, transparent: Swift.Bool = true, margins: (top: Swift.UInt, bottom: Swift.UInt, left: Swift.UInt, right: Swift.UInt) = (5,5,5,5), onShow: @escaping () -> AdsPostX.AdsPostx.Void, onError: @escaping (AdsPostX.AdsPostxError) -> AdsPostX.AdsPostx.Void, onDismiss: @escaping () -> AdsPostX.AdsPostx.Void)
-  public static func supportedInterfaceOrientations(_ supportedOrientations: UIKit.UIInterfaceOrientationMask) -> UIKit.UIInterfaceOrientationMask
+  @objc public static func supportedInterfaceOrientations(_ supportedOrientations: UIKit.UIInterfaceOrientationMask) -> UIKit.UIInterfaceOrientationMask
   @objc deinit
 }
 public enum OfferPresentationStyle {
