@@ -33,3 +33,7 @@
 ## 0.0.9
 
 - performance improvements.
+
+## 0.0.10
+
+- performance improvements.
