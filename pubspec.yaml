@@ -3,9 +3,7 @@ description: AdsPostX offers a Flutter plugin designed to help you integrate Ads
 version: 0.0.9
 homepage: "https://github.com/AdsPostX/adspostx_flutter"
 license: MIT
-repository:
-  type: git
-  url: "https://github.com/AdsPostX/adspostx_flutter.git"
+repository: "https://github.com/AdsPostX/adspostx_flutter.git"
 source:
   git:
     url: "https://github.com/AdsPostX/adspostx_flutter.git"

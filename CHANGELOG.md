@@ -29,3 +29,7 @@
 ## 0.0.8
 
 - updated with ios and android dependencies.
+
+## 0.0.9
+
+- performance improvements.
