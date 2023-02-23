@@ -25,3 +25,7 @@
 ## 0.0.7
 
 - updated readme.
+
+## 0.0.8
+
+- updated with ios and android dependencies.
