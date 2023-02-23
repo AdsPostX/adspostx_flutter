@@ -14,7 +14,7 @@ AdsPostX offers a flutter plugin designed to help you integrate AdsPostX into yo
   s.author           = { 'adspostx' => 'help@adspostx.com' }
   s.source           = { :path => '.' }
   s.source_files = 'Classes/**/*'
-  s.dependency 'Flutter',
+  s.dependency 'Flutter'
   s.dependency "AdsPostX", "~> 1.0.0"
 
   s.platform = :ios, '13.0'
