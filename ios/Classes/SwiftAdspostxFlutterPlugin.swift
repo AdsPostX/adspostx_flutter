@@ -30,7 +30,7 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
         } else if(call.method == "loadOffers") {
             if let data = call.arguments as? Dictionary<String, Any> {
                 if let attributes = data["attributes"] as? Dictionary<String, Any> {
-                    print("attributes : ", attributes)
+                    // print("attributes : ", attributes)
                     AdsPostx.load(attributes: attributes) { _result in
                         switch _result {
                         case .success():
@@ -55,14 +55,14 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
                 let bottomMargin: Int = data["bottomMargin"] as? Int ?? 0
                 let leftMargin: Int = data["leftMargin"] as? Int ?? 0
                 let style: OfferPresentationStyle = presentationStyle == 0 ? OfferPresentationStyle.popup : OfferPresentationStyle.fullScreen
-                print("presentationStyle: ", presentationStyle)
-                print("env : ", AdsPostx.getEnvironment())
-                print("isTransparent : ",isTransparent)
-                print("topMargin : ",topMargin)
-                print("rightMargin : ",rightMargin)
-                print("bottomMargin : ",bottomMargin)
-                print("leftMargin : ",leftMargin)
-                print("style : ",style)
+                // print("presentationStyle: ", presentationStyle)
+                // print("env : ", AdsPostx.getEnvironment())
+                // print("isTransparent : ",isTransparent)
+                // print("topMargin : ",topMargin)
+                // print("rightMargin : ",rightMargin)
+                // print("bottomMargin : ",bottomMargin)
+                // print("leftMargin : ",leftMargin)
+                // print("style : ",style)
                 AdsPostx.showOffers(presentationStyle: style,transparent: isTransparent, margins: (top: UInt(topMargin), bottom: UInt(bottomMargin), left: UInt(leftMargin), right: UInt(rightMargin))) {
                     result(true)
                 } onError: { error in
@@ -87,9 +87,9 @@ public class SwiftAdspostxFlutterPlugin: NSObject, FlutterPlugin {
             
         } else if(call.method == "setEnvironment") {
             if let data = call.arguments as? Dictionary<String, Any> {
-                print("env : ", data["environment"])
+                // print("env : ", data["environment"])
                 let env: Int = data["environment"] as? Int ?? 0
-                print("env: ", env)
+                // print("env: ", env)
                 AdsPostx.SetEnvironment(env == 0 ? .live : .test)
                 result(true)
             }
