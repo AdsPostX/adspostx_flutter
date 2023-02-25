@@ -37,3 +37,11 @@
 ## 0.0.10
 
 - performance improvements.
+
+## 0.0.11
+
+- performance improvements & bugs fixings.
+
+## 0.0.12
+
+- performance improvements & bugs fixings.
