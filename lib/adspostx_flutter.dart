@@ -32,11 +32,11 @@ class AdspostxFlutter {
     return AdspostxFlutterPlatform.instance.setTimeout(seconds);
   }
 
-  /// Initialize adspostx with accountId, accountId should be non-empty valid String.
+  /// Initialize adspostx with sdkId, sdkId should be non-empty valid String.
   /// Returns a bool indicating that if init call is successful or not.
   /// In case of error it can also throw exceptions.
-  Future<bool> init(String accountId) {
-    return AdspostxFlutterPlatform.instance.init(accountId);
+  Future<bool> init(String sdkId) {
+    return AdspostxFlutterPlatform.instance.init(sdkId);
   }
 
   /// LoadOffers with specified attributes, attributes should be of Map type.

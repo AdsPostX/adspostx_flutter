@@ -29,9 +29,9 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
       result.success("Android ${android.os.Build.VERSION.RELEASE}")
     } else if(call.method == "init") {
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
-      val accountId: String = (data["accountId"] as String?) ?: ""
+      val sdkId: String = (data["sdkId"] as String?) ?: ""
 
-      AdsPostX.init(accountId) { status, error ->
+      AdsPostX.init(sdkId) { status, error ->
         if (status) {
           result.success(true)
         } else {
@@ -45,9 +45,8 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
     } else if(call.method == "loadOffers") {
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
       val attributes: Map<String,String>? = data["attributes"] as Map<String, String>?
-      attributes?.let {
 
-          AdsPostX.load(context, it) { status, error ->
+          AdsPostX.load(context, attributes) { status, error ->
                   if (status) {
                       result.success(true)
                   } else {
@@ -58,7 +57,6 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
                       }
 
                   }
-              }
       }
     } else if(call.method == "showOffers") {
         val data: HashMap<String,Any>? =  call.arguments as HashMap<String,Any>?
@@ -75,14 +73,14 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
             isTransparent,
             margin = Margin(topMargin.toUInt(),bottomMargin.toUInt(),leftMargin.toUInt(),rightMargin.toUInt()),
             onShow = {
-                println("Android: On show")
+                //println("Android: On show")
                 result.success(true)
             },
             onError = { it ->
                 result.error("ERROR",it.message,null)
             },
             onDismiss = {
-                println("Android: Dismiss")
+                //println("Android: Dismiss")
                 channel.invokeMethod(
                   "onDismiss",
                   true)

@@ -10,12 +10,14 @@ please visit [https://docs.adspostx.com/flutter-sdk] to get all details about in
 
 ### To init AdsPostX.
 
+- sdkId - should be valid SDK ID.
+
 ```
-Future<void> init(String accountId, BuildContext context) async {
+Future<void> init(String sdkId, BuildContext context) async {
     bool status = false;
   // show some loading indicator...
     try {
-      status = await _adspostxPlugin.init(accountId);
+      status = await _adspostxPlugin.init(sdkId);
       // hide loading indicator, if status = true, mean we are ready to load offers now.
     } on PlatformException catch (error) {
       // hide loading indicator, and handle error gracefully.
@@ -25,10 +27,15 @@ Future<void> init(String accountId, BuildContext context) async {
 
 ### To Load Offers.
 
+- if you don't want to pass any attributes then pass it as '{}'.
+- example of non-empty attribute: {"name": "dev", "country": "usa"}
+
 ```
 Future<void> loadOffers(Map attributes, BuildContext context) async {
     bool status = false;
     // show loading indicator..
+    // in case of no attribute needed, pass {}.
+
     try {
       status = await _adspostxPlugin.loadOffers(attributes);
     // hide loading indicator, if status = true, mean we are ready to show offers now.
@@ -40,6 +47,10 @@ Future<void> loadOffers(Map attributes, BuildContext context) async {
 ```
 
 ### To Show Offers.
+
+- presentationStyle = 0 - pop up
+- presentationStyle = 1 - full screen
+- value of topMargin, rightMargin, bottomMargin, leftMargin should be between 0 to 15.
 
 ```
 Future<void> showOffers(int presentationStyle, bool isTransparent,
@@ -63,6 +74,9 @@ Future<void> showOffers(int presentationStyle, bool isTransparent,
 ```
 
 ### To Set Environment
+
+- environment = 0 - for LIVE
+- environment = 1 - for TEST
 
 ```
 Future<void> setEnvironment(int environment) async {

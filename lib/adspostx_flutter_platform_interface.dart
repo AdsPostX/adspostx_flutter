@@ -54,10 +54,10 @@ abstract class AdspostxFlutterPlatform extends PlatformInterface {
     throw UnimplementedError('setTimeout() has not been implemented.');
   }
 
-  /// Initialize adspostx with accountId, accountId should be non-empty valid String.
+  /// Initialize adspostx with sdkId, sdkId should be non-empty valid String.
   /// Returns a bool indicating that if init call is successful or not.
   /// In case of error it can also throw exceptions.
-  Future<bool> init(String accountId) async {
+  Future<bool> init(String sdkId) async {
     throw UnimplementedError('init() has not been implemented.');
   }
 

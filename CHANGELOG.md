@@ -45,3 +45,7 @@
 ## 0.0.12
 
 - performance improvements & bugs fixings.
+
+## 0.0.13
+
+- bugs fixings.

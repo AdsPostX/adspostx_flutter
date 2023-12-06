@@ -70,15 +70,15 @@ class MethodChannelAdspostxFlutter extends AdspostxFlutterPlatform {
     }
   }
 
-  /// Initialize adspostx with accountId, accountId should be non-empty valid String.
+  /// Initialize adspostx with sdkId, sdkId should be non-empty valid String.
   /// Returns a bool indicating that if init call is successful or not.
   /// In case of error it can also throw exceptions.
   @override
-  Future<bool> init(String accountId) async {
+  Future<bool> init(String sdkId) async {
     try {
       final statusMessage = await methodChannel.invokeMethod(
         "init",
-        {"accountId": accountId},
+        {"sdkId": sdkId},
       );
       return statusMessage;
     } on PlatformException catch (error) {
