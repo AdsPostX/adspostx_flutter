@@ -49,3 +49,7 @@
 ## 0.0.13
 
 - bugs fixings.
+
+## 0.0.14
+
+- crash fixings.
