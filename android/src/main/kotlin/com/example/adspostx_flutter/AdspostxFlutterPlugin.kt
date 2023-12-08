@@ -17,6 +17,7 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
   /// when the Flutter Engine is detached from the Activity
   private lateinit var channel : MethodChannel
   private  lateinit var context: Context
+  private var throughOnMethodCall = false
 
   override fun onAttachedToEngine(@NonNull flutterPluginBinding: FlutterPlugin.FlutterPluginBinding) {
     channel = MethodChannel(flutterPluginBinding.binaryMessenger, "adspostx_flutter")
@@ -25,34 +26,45 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
   }
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
+    throughOnMethodCall = true
     if (call.method == "getPlatformVersion") {
+      if(throughOnMethodCall) {
+        throughOnMethodCall = false
         result.success("Android ${android.os.Build.VERSION.RELEASE}")
+      }
     } else if(call.method == "init") {
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
       val sdkId: String = (data["sdkId"] as String?) ?: ""
 
       AdsPostX.init(sdkId) { status, error ->
         if (status) {
+          if(throughOnMethodCall) {
+            throughOnMethodCall = false
             result.success(true)
+          }
         } else {
-          if (error != null) {
-            result.error("ERROR",error.message,null)
-          } else {
-            result.error("ERROR","Unknown error",null)
+          if(throughOnMethodCall) {
+            throughOnMethodCall = false
+            result.error("ERROR", error?.message ?: "Unknown error", null)
           }
         }
       }
     } else if(call.method == "loadOffers") {
-        println("load offers goint to be called for native")
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
       val attributes: Map<String,String>? = data["attributes"] as Map<String, String>?
 
 
           AdsPostX.load(context, attributes) { status, error ->
                   if (status) {
+                    if(throughOnMethodCall) {
+                      throughOnMethodCall = false
                       result.success(true)
+                    }
                   } else {
+                    if(throughOnMethodCall) {
+                      throughOnMethodCall = false
                       result.error("ERROR", error?.message ?: "Unknown error", null)
+                    }
                   }
       }
     } else if(call.method == "showOffers") {
@@ -71,10 +83,16 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
             margin = Margin(topMargin.toUInt(),bottomMargin.toUInt(),leftMargin.toUInt(),rightMargin.toUInt()),
             onShow = {
                 //println("Android: On show")
+                if(throughOnMethodCall) {
+                  throughOnMethodCall = false
                   result.success(true)
+                }
             },
             onError = { it ->
+              if(throughOnMethodCall) {
+                throughOnMethodCall = false
                 result.error("ERROR",it.message,null)
+              }
             },
             onDismiss = {
                 //println("Android: Dismiss")
@@ -88,26 +106,41 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
 
         if(environment == 0) {
             AdsPostX.setEnvironment(AdsPostxEnvironment.LIVE)
+            if(throughOnMethodCall) {
+              throughOnMethodCall = false
               result.success(true)
+            }
         } else {
             AdsPostX.setEnvironment(AdsPostxEnvironment.TEST)
+            if(throughOnMethodCall) {
+              throughOnMethodCall = false
               result.success(true)
+            }
         }
     } else if(call.method == "setDebugLog") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
         val isdebugLogEnabled: Boolean = (data["debugLog"] as Boolean?) ?: false
 
         AdsPostX.setDebugLog(isdebugLogEnabled)
+        if(throughOnMethodCall) {
+          throughOnMethodCall = false
           result.success(true)
+        }
     }else if(call.method == "setTimeOut") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
         val timeOut: Double = (data["timeout"] as Double?) ?: 10.0
 
         AdsPostX.setTimeOut(timeOut)
+        if(throughOnMethodCall) {
+          throughOnMethodCall = false
           result.success(true)
+        }
     }
     else {
+      if(throughOnMethodCall) {
+        throughOnMethodCall = false
       result.notImplemented()
+      }
     }
   }
 
