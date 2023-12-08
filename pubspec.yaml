@@ -1,6 +1,6 @@
 name: adspostx_flutter
 description: AdsPostX offers a Flutter plugin designed to help you integrate AdsPostX into your Flutter mobile application within minutes.
-version: 0.0.15
+version: 0.0.16
 homepage: "https://github.com/AdsPostX/adspostx_flutter"
 license: MIT
 repository: "https://github.com/AdsPostX/adspostx_flutter.git"
