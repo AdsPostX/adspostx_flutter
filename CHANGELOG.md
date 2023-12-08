@@ -52,4 +52,8 @@
 
 ## 0.0.14
 
-- crash fixings.
+- crash fix.
+
+## 0.0.15
+
+- crash fix.

@@ -8,8 +8,6 @@ import io.flutter.plugin.common.MethodCall
 import io.flutter.plugin.common.MethodChannel
 import io.flutter.plugin.common.MethodChannel.MethodCallHandler
 import io.flutter.plugin.common.MethodChannel.Result
-import android.os.Handler
-import android.os.Looper
 
 /** AdspostxFlutterPlugin */
 class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
@@ -28,18 +26,14 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
 
   override fun onMethodCall(@NonNull call: MethodCall, @NonNull result: Result) {
     if (call.method == "getPlatformVersion") {
-      Handler(Looper.getMainLooper()).post {        
         result.success("Android ${android.os.Build.VERSION.RELEASE}")
-      }
     } else if(call.method == "init") {
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
       val sdkId: String = (data["sdkId"] as String?) ?: ""
 
       AdsPostX.init(sdkId) { status, error ->
         if (status) {
-          Handler(Looper.getMainLooper()).post {
             result.success(true)
-          }
         } else {
           if (error != null) {
             result.error("ERROR",error.message,null)
@@ -49,21 +43,16 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
         }
       }
     } else if(call.method == "loadOffers") {
+        println("load offers goint to be called for native")
       val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
       val attributes: Map<String,String>? = data["attributes"] as Map<String, String>?
 
+
           AdsPostX.load(context, attributes) { status, error ->
                   if (status) {
-                    Handler(Looper.getMainLooper()).post {
                       result.success(true)
-                    }
                   } else {
-                      if (error != null) {
-                          result.error("ERROR", error.message, null)
-                      } else {
-                          result.error("ERROR", "Unknown error", null)
-                      }
-
+                      result.error("ERROR", error?.message ?: "Unknown error", null)
                   }
       }
     } else if(call.method == "showOffers") {
@@ -82,9 +71,7 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
             margin = Margin(topMargin.toUInt(),bottomMargin.toUInt(),leftMargin.toUInt(),rightMargin.toUInt()),
             onShow = {
                 //println("Android: On show")
-                Handler(Looper.getMainLooper()).post {
                   result.success(true)
-                }
             },
             onError = { it ->
                 result.error("ERROR",it.message,null)
@@ -101,31 +88,23 @@ class AdspostxFlutterPlugin: FlutterPlugin, MethodCallHandler {
 
         if(environment == 0) {
             AdsPostX.setEnvironment(AdsPostxEnvironment.LIVE)
-            Handler(Looper.getMainLooper()).post {
               result.success(true)
-            }
         } else {
             AdsPostX.setEnvironment(AdsPostxEnvironment.TEST)
-            Handler(Looper.getMainLooper()).post {
               result.success(true)
-            }
         }
     } else if(call.method == "setDebugLog") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
         val isdebugLogEnabled: Boolean = (data["debugLog"] as Boolean?) ?: false
 
         AdsPostX.setDebugLog(isdebugLogEnabled)
-        Handler(Looper.getMainLooper()).post {
           result.success(true)
-        }
     }else if(call.method == "setTimeOut") {
         val data: HashMap<String,Any> =  call.arguments as HashMap<String,Any>
         val timeOut: Double = (data["timeout"] as Double?) ?: 10.0
 
         AdsPostX.setTimeOut(timeOut)
-        Handler(Looper.getMainLooper()).post {
           result.success(true)
-        }
     }
     else {
       result.notImplemented()
